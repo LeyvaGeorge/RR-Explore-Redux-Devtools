@@ -14,6 +14,11 @@ function Todo() {
         dispatch(addTodo(input))
     }
 
+    const doneItem = (e) => {
+        e.preventDefault()
+        dispatch(removeOne(Number(input)))
+    }
+
     return (
         <div>
             <form onSubmit={(e) => submitForm(e)}>
@@ -23,6 +28,10 @@ function Todo() {
             <ul>
                 {renderItems}
             </ul>
+            <form onSubmit={(e) => doneItem(e)}>
+                <input type='number' onChange={(e) => setInput(e.target.value)}/> {/*  TODO */}
+                <button type='submit'> Remove </button>
+            </form>
             <button onClick={() => dispatch(clearTodo())}>Clear</button>
         </div>
     )
